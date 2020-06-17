@@ -1,8 +1,8 @@
 const http = require('http');
 const fs = require('fs') // stands for file system we can do the following with it
 /*
-Read files
-Create files
+Read files .readFile()
+Create files .open()- empty file
 Update files
 Delete files
 Rename files
