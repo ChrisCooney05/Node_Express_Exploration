@@ -1,10 +1,8 @@
 const fs = require('fs');
 
-fs.appendFile('myNewFile1.txt', ' Updated Text', function(err) {
+fs.writeFile('myNewFile3.txt', 'I have changed the text', function(err) {
   if (err) throw err;
-  console.log('Updated!');
+  console.log('Replaced!');
 });
 
-/* will find the specified file and will add the text
-to the end of the file
-*/
+//Targets the file you have passed in and replaces the text
