@@ -1,10 +1,12 @@
 const fs = require('fs');
 
-fs.open('myNewFile2.txt', 'w', function(err) {
+fs.writeFile('myNewFile3.txt', 'Hello Content!', function(err) {
   if (err) throw err;
   console.log('Saved!');
-})
+});
 
-/* makes a new file if a file does not exist 
-the w flag specifies that the file be opened for writing
+/*
+this method replaces a specified file and content
+if it exists. if not, a new file is made with the 
+specified content
 */
