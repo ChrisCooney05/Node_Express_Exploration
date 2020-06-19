@@ -3,7 +3,7 @@ const app = express();
 const things = require('./things.js')
 
 app.set('view engine', 'pug');
-app.set('views', '../views');
+app.set('views', './views');
 
 app.use('/things', (req, res, next) => {
   console.log('A new request received at ' + Date.now());
