@@ -15,6 +15,10 @@ app.all('/test', (req, res) => {
 });
 //can take all forms of request
 
+app.get('/:id', (req, res) => {
+  res.send('The ID that you used was ' + req.params.id);
+});
+//:id can pull the id that is used at the end of the url string 8080/123 adds 123 to response
 app.use('/things', things);
 /*tells the app to use the module we have imported
 makes the /things route load our things.js routing*/
