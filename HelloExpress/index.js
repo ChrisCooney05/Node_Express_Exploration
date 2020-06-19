@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const things = require('./things.js')
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 app.use('/things', (req, res, next) => {
   console.log('A new request received at ' + Date.now());
   /*function call is important as it tells that more processing is required
@@ -10,6 +13,10 @@ app.use('/things', (req, res, next) => {
   next();
 })
 //this middle wear is called only when using the /things router
+app.get('/first_template', (req, res) => {
+  res.render('first_view');
+});//pulls our pug file from views and renders as a standard html
+
 
 app.get('/hello', (req, res) => {
   res.send('Hello World');
