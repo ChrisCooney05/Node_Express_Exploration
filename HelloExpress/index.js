@@ -23,6 +23,10 @@ app.use('/things', things);
 /*tells the app to use the module we have imported
 makes the /things route load our things.js routing*/
 
+app.get('/things/:name/:id', (req, res) => {
+  res.send('Your ID is ' + req.params.id + ' and your name is ' + req.params.name);
+});
+
 app.listen(8000);
 
 //curl -X POST "http://localhost:3000/hello" with an open server can test post request
