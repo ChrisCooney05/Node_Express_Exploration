@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 const things = require('./things.js')
 
+app.use((req, res, next) => {
+  console.log('A new request received at ' + Date.now());
+  /*function call is important as it tells that more processing is required
+  for the current request and  is in the next middlewear function/ route handler
+  */
+  next();
+})
+
 app.get('/hello', (req, res) => {
   res.send('Hello World');
 });
