@@ -26,6 +26,16 @@ makes the /things route load our things.js routing*/
 app.get('/things/:name/:id', (req, res) => {
   res.send('Your ID is ' + req.params.id + ' and your name is ' + req.params.name);
 });
+//we can add multiple : if we would like
+
+app.get('/things/:id([0-9]{5})', (req, res) => {
+  res.send('ID: ' + req.params.id);
+});
+//regex can be used to limit or specify url requirements. so ID must be 5 long only numbers
+app.get('*', (req, res) => {
+  res.send('Sorry that is not a valid URL');
+});
+//this can be used as a catch if any errors are made, must be at end
 
 app.listen(8000);
 
