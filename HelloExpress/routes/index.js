@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const things = require('./things.js');
 const dynamic = require('./dynamic.js');
+const component = require('./components.js');
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -33,6 +34,8 @@ app.all('/test', (req, res) => {
 //can take all forms of request
 
 app.use('/dynamic_view', dynamic);
+
+app.use('/components', component)
 
 app.get('/:id', (req, res) => {
   res.send('The ID that you used was ' + req.params.id);
