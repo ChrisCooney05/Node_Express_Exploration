@@ -19,7 +19,6 @@ app.get('/first_template', (req, res) => {
   res.render('first_view');
 });//pulls our pug file from views and renders as a standard html
 
-
 app.get('/hello', (req, res) => {
   res.send('Hello World');
 });
@@ -45,6 +44,7 @@ app.get('/:id', (req, res) => {
 app.use('/things', things);
 /*tells the app to use the module we have imported
 makes the /things route load our things.js routing*/
+
 
 app.get('*', (req, res) => {
   res.send('Sorry that is not a valid URL');
