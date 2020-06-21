@@ -38,6 +38,10 @@ app.post('/', (req, res) => {
   res.send('received your request!')
 });
 
+app.get('/person', (req, res) => {
+  res.render('person');
+})
+
 //{ say: 'Hello', to: 'Chris' } this is how the data looks when submitted.
 
 app.listen(8000);
