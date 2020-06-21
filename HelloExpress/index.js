@@ -1,8 +1,19 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const mongoose = require('mongoose');
 const upload = multer();
 const app = express();
+mongoose.connect('mongodb://localhost/my_db')
+
+const personSchema = mongoose.Schema({
+  name: String,
+  age: Number,
+  nationality: String
+});
+const Person = mongoose.model('Person', personSchema);
+//above code is used to create a model
+//this defines the schema for a person and is used to create a Mongoose mode Person
 
 app.get('/', (req, res) => {
   res.render('form');
