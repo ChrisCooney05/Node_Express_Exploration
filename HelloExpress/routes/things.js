@@ -15,7 +15,7 @@ router.get('/:name/:id', (req, res) => {
 });
 //we can add multiple : if we would like
 
-router.get('/things/:id([0-9]{5})', (req, res) => {
+router.get('/:id([0-9]{5})', (req, res) => {
   res.send('ID: ' + req.params.id);
 });
 //regex can be used to limit or specify url requirements. so ID must be 5 long only numbers
