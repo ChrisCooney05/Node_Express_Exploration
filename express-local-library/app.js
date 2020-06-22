@@ -14,7 +14,7 @@ const { brotliDecompress } = require('zlib');
 var mongoDB = 'mongodb+srv://ChrisCooney05:tonBSkzqHPGnPM1h@cluster0.rbrfg.mongodb.net/local_library?retryWrites=true&w=majority'
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
-brotliDecompress.on('error', console.error.bind(console, 'MongoDB connection error:');)
+db.on('error', console.error.bind(console, 'MongoDB connection error:');)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
