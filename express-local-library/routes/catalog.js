@@ -131,3 +131,5 @@ router.get("/bookinstance/:id", bookInstanceController.BookInstanceDetail);
 
 // GET request for list of all BookInstance.
 router.get("/bookinstances", bookInstanceController.bookInstanceList);
+
+module.exports = router;
