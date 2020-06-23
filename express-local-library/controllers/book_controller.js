@@ -41,6 +41,6 @@ exports.bookUpdateGet = (req, res) => {
 };
 
 //handle book delete on POST
-exports.bookDeletePost = (req, res) => {
+exports.bookUpdatePost = (req, res) => {
   res.send("NOT IMPLEMENTED: Book update POST");
 };
