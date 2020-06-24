@@ -1,8 +1,36 @@
 const Book = require("../models/book");
-
+const Author = require("../models/author");
+const Genre = require("../models/genre");
+const BookInstance = require("../models/book_instance");
+const async = require("async");
 //this will display the website home page
 exports.index = (req, res) => {
-  res.send("NOT IMPLEMENTED: Site Home Page");
+  async.parallel(
+    {
+      bookCont: function (callback) {
+        Book.countDocuments({}, callback); //empty object passed in as match condition to find all documents in this collection
+      },
+      bookInstanceCount: function (callback) {
+        BookInstance.countDocuments({}, callback);
+      },
+      BookInstanceAvailableCount: function (callback) {
+        BookInstance.countDocuments({ status: "Available" }, callback);
+      },
+      authorCount: function (callback) {
+        Author.countDocuments({}, callback);
+      },
+      genreCount: function (callback) {
+        Genre.countDocuments({}, callback);
+      },
+    }, //this async call returns an object with key:value pares with the results of our functions
+    function (err, result) {
+      res.render("index", {
+        title: "Local Library Home",
+        error: err,
+        data: results,
+      });
+    } // this is our callback that is executed once all the async functions are complete, with result being our object
+  );
 };
 
 //display a list of all books
