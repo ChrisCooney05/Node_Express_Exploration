@@ -27,7 +27,7 @@ exports.index = (req, res) => {
       res.render("index", {
         title: "Local Library Home",
         error: err,
-        data: results,
+        data: result,
       });
     } // this is our callback that is executed once all the async functions are complete, with result being our object
   );
