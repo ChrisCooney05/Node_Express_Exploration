@@ -12,3 +12,15 @@ a {
   padding: 0;
   list-style: none;
 }
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-warning {
+  color: grey;
+}
