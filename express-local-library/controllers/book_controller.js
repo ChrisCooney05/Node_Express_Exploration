@@ -42,7 +42,7 @@ exports.bookList = function (req, res, next) {
       if (err) {
         return next(err);
       } // Successful so render
-      res.render("bookList", { title: "Book List", bookList: listBooks });
+      res.render("book_list", { title: "Book List", bookList: listBooks });
     });
 };
 
