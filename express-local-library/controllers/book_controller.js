@@ -4,7 +4,7 @@ const Genre = require("../models/genre");
 const BookInstance = require("../models/book_instance");
 const async = require("async");
 //this will display the website home page
-exports.index = (req, res) => {
+exports.index = function (req, res) {
   async.parallel(
     {
       bookCont: function (callback) {
@@ -34,8 +34,16 @@ exports.index = (req, res) => {
 };
 
 //display a list of all books
-exports.bookList = (req, res) => {
-  res.send("NOT IMPLEMENTED: Book list");
+exports.bookList = function (req, res, next) {
+  Book.find({}, "title author") // finds all book items and returns only title and author(_id and virtual also returned)
+    .populate("author") //stores full author details in result over the author id
+    .exec(function (err, listBooks) {
+      //on success call back executed and JSON passed into new view
+      if (err) {
+        return next(err);
+      } // Successful so render
+      res.render("bookList", { title: "Book List", bookList: listBooks });
+    });
 };
 
 //display detail page for a specific book
