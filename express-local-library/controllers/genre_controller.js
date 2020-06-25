@@ -1,7 +1,6 @@
 const Genre = require("../models/genre");
 const async = require("async");
-const book = require("../models/book");
-const { BookInstanceDetail } = require("./book_instance_controller");
+const Book = require("../models/book");
 
 //display a list of Genre
 exports.genreList = function (req, res, next) {
@@ -28,7 +27,7 @@ exports.genreDetail = function (req, res, next) {
       }, //finds genre via params id in url
 
       genreBooks: function (callback) {
-        BookInstanceDetail.find({ genre: req.params.id }).exec(callback);
+        Book.find({ genre: req.params.id }).exec(callback);
       }, //finds all books that belong to that genre via the genre id
     },
     function (err, results) {

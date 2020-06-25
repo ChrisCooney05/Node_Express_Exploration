@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+
+  h1 Genre: #{genre.name}
+
+  div(class='genre_list')
+  
+    h4 Books 
+
+    dl 
+      each book in genreBooks
+        dt 
+          a(href=book.url) #{book.title}
+        dd #{book.summary}
+
+      else 
+        p This Genre has no books
