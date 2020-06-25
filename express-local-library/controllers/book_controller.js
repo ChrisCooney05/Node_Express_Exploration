@@ -71,6 +71,7 @@ exports.bookDetail = function (req, res, next) {
       }
       res.render("book_detail", {
         title: results.book.title,
+        book: results.book,
         bookInstances: results.bookInstance,
       });
     }
