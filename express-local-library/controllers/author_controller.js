@@ -5,11 +5,11 @@ exports.authorList = function (req, res, next) {
   Author.find()
     .populate("author")
     .sort([["family_name", "ascending"]])
-    .selectedExclusively(function (err, listAuthors) {
+    .exec(function (err, listAuthors) {
       if (err) {
         return next(err);
       }
-      res.render("authorList", {
+      res.render("author_list", {
         title: "Author List",
         authorList: listAuthors,
       });
