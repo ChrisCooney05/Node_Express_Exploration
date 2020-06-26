@@ -3,7 +3,10 @@ extends layout
 block content
 
   h1 Author: #{author.name}
-  p #{author.date_of_birth} - #{author.date_of_birth}
+  if author.lifeSpan != null
+    p Author Age at death:#{author.lifeSpan} 
+  else
+    p 
 
   div(style='margin-left:20px;margin-top:20px')
     //dl is description list with dt being the item and dd the description

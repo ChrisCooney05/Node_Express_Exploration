@@ -17,4 +17,4 @@ block content
       span.text-warning #{bookInstance.status}
 
     if bookInstance.status != 'Available'
-      P #[strong Due back:] #{bookInstance.due_back}
+      P #[strong Due back:] #{bookInstance.DueBackFormatted}
