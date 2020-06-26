@@ -1,4 +1,5 @@
 const BookInstance = require("../models/book_instance");
+const { response } = require("express");
 
 //display a list of all BookInstances
 exports.bookInstanceList = function (req, res, next) {
@@ -16,8 +17,23 @@ exports.bookInstanceList = function (req, res, next) {
 };
 
 //display detail page for a specific BookInstance
-exports.BookInstanceDetail = (req, res) => {
-  res.send("NOT IMPLEMENTED: BookInstance detail: " + req.params.id);
+exports.BookInstanceDetail = function (req, res) {
+  BookInstance.findById(req.params.id)
+    .populate("book")
+    .exec(function (err, bookInstance) {
+      if (err) {
+        return next(err);
+      }
+      if (bookInstance == null) {
+        let err = new Error("Book copy not found");
+        err.status = 404;
+        return next(err);
+      }
+      res.render("bookinstance_detail", {
+        title: `Copy: ${bookInstance.title}`,
+        bookInstance: bookInstance,
+      });
+    });
 };
 
 //display BookInstance create form on GET
