@@ -127,7 +127,7 @@ router.post(
 );
 
 // GET request for one BookInstance.
-router.get("/bookinstance/:id", bookInstanceController.BookInstanceDetail);
+router.get("/bookinstance/:id", bookInstanceController.bookInstanceDetail);
 
 // GET request for list of all BookInstance.
 router.get("/bookinstances", bookInstanceController.bookInstanceList);
