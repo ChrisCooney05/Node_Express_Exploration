@@ -1,6 +1,7 @@
 const Genre = require("../models/genre");
 const async = require("async");
 const Book = require("../models/book");
+const validator = require("express-validator");
 
 //display a list of Genre
 exports.genreList = function (req, res, next) {
@@ -49,14 +50,58 @@ exports.genreDetail = function (req, res, next) {
 };
 
 //display Genre create for on GET
-exports.genreCreateGet = (req, res) => {
-  res.send("NOT IMPLEMENTED: Genre create GET");
+exports.genreCreateGet = function (req, res, next) {
+  res.render("genre_form", { title: "Create Genre" });
 };
 
 //handle Genre Create on POST
-exports.genreCreatePost = (req, res) => {
-  res.send("NOT IMPLEMENTED: Genre create POST");
-};
+exports.genreCreatePost = [
+  // Validate that the name field is not empty.
+  validator.body("name", "Genre name required").trim().isLength({ min: 1 }),
+
+  // Sanitize (escape) the name field.
+  validator.sanitizeBody("name").escape(),
+
+  // Process request after validation and sanitization.
+  function (req, res, next) {
+    // Extract the validation errors from a request.
+    const errors = validator.validator(req);
+
+    //Create a genre object with escaped and trimmed data.
+    let genre = new Genre({ name: req.body.name });
+
+    if (!errors.isEmpty()) {
+      //there are errors. Render the form again with sanitized values/err messages.
+      res.render("genre_form", {
+        title: "Create Genre",
+        genre: genre,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      //Data from form is valid
+      //check if Genre already exists
+      Genre.findOne({
+        name: req.body.name,
+      }).exec(function (err, foundGenre) {
+        if (err) {
+          return next(err);
+        }
+        if (foundGenre) {
+          //found Genre no need to make a new one
+          res.render(found_genre.url);
+        } else {
+          genre.save(function (err) {
+            if (err) {
+              return next(err);
+            }
+            res.redirect(genre.url);
+          });
+        }
+      });
+    }
+  },
+];
 
 //display Genre delete form on GET
 exports.genreDeleteGet = (req, res) => {
