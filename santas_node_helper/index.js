@@ -5,17 +5,15 @@ fs.readFile("./moves.txt", (err, data) => {
   if (err) {
     console.log(err);
   }
-  let up = 0;
-  let down = 0;
+  let floor = 0;
   let moves = data.toString();
   for (let i = 0; i < moves.length; i++) {
     if (moves[i] === "(") {
-      up++;
+      floor++;
     } else {
-      down++;
+      floor--;
     }
   }
-  let result = up - down;
-  console.log(result);
+  console.log(floor);
   console.timeEnd("test");
 });
